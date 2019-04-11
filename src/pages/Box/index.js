@@ -15,7 +15,7 @@ export default class Box extends Component {
   state = { box: {} };
 
   async componentDidMount() {
-      this.subscribeToNewFiles();
+    this.subscribeToNewFiles();
     const box = this.props.match.params.id;
     const response =await api.get(`boxes/${box}`);
     this.setState({box: response.data});
@@ -55,8 +55,8 @@ export default class Box extends Component {
 
             <Dropzone onDropAccepted={this.handleUpload}>
                 {({getRootProps, getInputProps}) => (
-                    <div className="upload" {...getRootProps}>
-                        <input {...getRootProps()}/>
+                    <div className="upload" {...getRootProps()}>
+                        <input {...getInputProps()}/>
                         <p> Arraste arquivos ou clique aqui</p>
                     </div>
                 )}
