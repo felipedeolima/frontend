@@ -26,11 +26,16 @@ export default class Box extends Component {
       const box = this.props.match.params.id;
       const io = socket('https://omnistack-rocket.herokuapp.com');
 
-      io.emit('');
+      io.emit('connectRoom', box);
+
+      io.on('file', data => {
+        this.setState({box: {...this.state.box, files: [data, ...this.state.box.files] }})
+        //console.log(data);
+      })
   }
 
-  handleUpload = (files) => {
-      files.foreach(file =>{
+  handleUpload = files => {
+      files.forEach(file =>{
         const data = new FormData();
         const box = this.props.match.params.id;
         data.append('file',file);
